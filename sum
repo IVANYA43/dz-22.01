@@ -1,0 +1,55 @@
+#include <iostream>
+
+int* findArrayWithMaxSum(int* array1, int size1, int* array2, int size2) {
+    if (array1 == nullptr || size1 <= 0 || array2 == nullptr || size2 <= 0) return nullptr;
+
+    int sum1 = 0, sum2 = 0;
+    for (int i = 0; i < size1; ++i) {
+        sum1 += array1[i];
+    }
+    for (int i = 0; i < size2; ++i) {
+        sum2 += array2[i];
+    }
+
+    return (sum1 >= sum2) ? array1 : array2;
+}
+
+int main() {
+    int size1, size2;
+
+    std::cout << "Enter the size of the first array: ";
+    std::cin >> size1;
+    int* array1 = new int[size1];
+    std::cout << "Enter the elements of the first array:\n";
+    for (int i = 0; i < size1; ++i) {
+        std::cin >> array1[i];
+    }
+
+    std::cout << "Enter the size of the second array: ";
+    std::cin >> size2;
+    int* array2 = new int[size2];
+    std::cout << "Enter the elements of the second array:\n";
+    for (int i = 0; i < size2; ++i) {
+        std::cin >> array2[i];
+    }
+
+    int* maxSumArray = findArrayWithMaxSum(array1, size1, array2, size2);
+
+    std::cout << "Array with the largest sum of elements:\n";
+    if (maxSumArray == array1) {
+        for (int i = 0; i < size1; ++i) {
+            std::cout << array1[i] << " ";
+        }
+    }
+    else {
+        for (int i = 0; i < size2; ++i) {
+            std::cout << array2[i] << " ";
+        }
+    }
+    std::cout << "\n";
+
+    delete[] array1;
+    delete[] array2;
+
+    return 0;
+}
